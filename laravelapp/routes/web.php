@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('hello/{id?}/{pass?}','HelloController@index');
+
+// Route::get('___(1)___', '___(2)___');

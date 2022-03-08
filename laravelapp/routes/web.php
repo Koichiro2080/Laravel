@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello/{id?}/{pass?}','HelloController@index');
+Route::get('hello','HelloController@index'); 
 
 // Route::get('___(1)___', '___(2)___');
+Route::get('jissyu3_1', 'jissyu3_1Controller@index');
+Route::post('jissyu3_1', 'jissyu3_1Contoroller@post');

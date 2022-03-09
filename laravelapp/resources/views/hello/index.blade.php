@@ -1,28 +1,43 @@
 @extends('layouts.helloapp')
-
-@section('title','Index')
-
-@section('menuber')
-    @parent
-    インデックスページ
+<style>
+.pagination { font-size:10pt; }
+.pagination li { display:inline-block }
+a
+tr th a:link { color: white; }
+tr th a:visited { color: white; }
+tr th a:hover { color: white; }
+tr th a:active { color: white; }
+</style>
+@section('title', 'Index')
+@section('menubar')
+@parent
+インデックスページ
 @endsection
-
 @section('content')
-    <p>ここが本文のコンテンツ</p>
-    <p>必要なだけ記述します。</p>
-     @include('component.message',['msg_title'=>'OK',
-     'msg_content'=>'サブビュー'])
-    @component('components.message')
-        @slot('msg_title')
-        CAUTION!
-        @endslot
-
-        @slot('msg_content')
-        これはメッセージの表示
-        @endslot
-    @endcomponent
+@if (Auth::check())
+    <p>USER: {{$user->name . ' (' . $user->email . ')'}}</p>
+@else
+    <p>※ログインしていません。（<a href="/login">ログイン</a>｜
+    <a href="/register">登録</a>）</p>
+@endif
+<table>
+    <tr>
+        <th><a href="/hello?sort=name">name</a></th>
+        <th><a href="/hello?sort=mail">mail</a></th>
+        <th><a href="/hello?sort=age">age</a></th>
+    </tr>
+    @foreach ($items as $item)
+    <tr>
+        <td>{{$item->name}}</td>
+        <td>{{$item->mail}}</td>
+        <td>{{$item->age}}</td>
+    </tr>
+    @endforeach
+</table>
+<div class="m-2">
+{{ $items->appends(['sort' => $sort])->links() }}
+</div>
 @endsection
-
 @section('footer')
-copyright 2022 tuyano.
+copyright 2020 tuyano.
 @endsection

@@ -21,7 +21,7 @@ class HelloRequest extends FormRequest
         return [
             'name' => 'required',
             'mail' => 'email',
-            'age' => ['numeric', new Myrule(5)],
+            'age' => ['numeric', new Myrule(2)],
         ];
     }
     public function messages()

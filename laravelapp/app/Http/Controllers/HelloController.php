@@ -15,7 +15,7 @@ class HelloController extends Controller
 
     public function index(Request $request)
     {
-        return view('hello.index');
+        return view('hello.index',['msg'=>'フォームを入力:']);
     }
 
     public function show(Request $request)
@@ -26,7 +26,7 @@ class HelloController extends Controller
 
     public function post(Request $request)
     {
-        return view('hello.index', ['items' => $items]);
+        return view('hello.index', ['msg' => '正しく入力されました']);
     }
 
     public function add(Request $request)
